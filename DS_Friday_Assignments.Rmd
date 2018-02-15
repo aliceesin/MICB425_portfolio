@@ -1,0 +1,146 @@
+---
+title: "DS Friday Assignments"
+author: "Alice Sin (16528144)"
+date: "February 15, 2018"
+output: html_document
+---
+
+# R Markdown Pretty html Challenge 
+The following assignment is an exercise for the reproduction of this .html document using the RStudio and RMarkdown tools we've shown you in class. Hopefully by the end of this, you won't feel at all the way this poor PhD student does. We're here to help, and when it comes to R, the internet is a really valuable resource. This open-source program has all kinds of tutorials online.
+
+![[http://phdcomics.com/](https://phdcomics.com/) Comic posted 1-17-2018](phd011718s.gif)
+  
+## Challenge Goals 
+The goal of this R Markdown html challenge is to give you an opportunity to play with a bunch of different RMarkdown formatting. Consider it a chance to flex your RMarkdown muscles. Your goal is to write your own RMarkdown that rebuilds this html document as close to the original as possible. So, yes, this means you get to copy my irreverant tone exactly in your own Markdowns. It's a little window into my psyche. Enjoy =)
+
+**hint: go to [the PhD Comics website](https://phdcomics.com/) to see if you can find the image above**  
+*If you can't find that exact image, just find a comparable image from the PhD Comics website and include it in your markdown*
+
+### Here's a header! 
+Let's be honest, this header is a little arbitrary. But show me that you can reproduce headers with different levels please. This is a level 3 header, for your reference (you can most easily tell this from the table of contents).
+
+#### Another header, now with maths 
+Perhaps you're already really confused by the whole markdown thing. Maybe you're so confused that you've forgotton how to add. Never fear! ~~A calculator~~ R is here:
+
+```{r}
+1231521+12341556280987
+```
+
+### Table Time 
+Or maybe, after you've added those numbers, you feel like it's about time for a table!  
+I'm going to leave all the guts of the coding here so you can see how libraries (R packages) are loaded into R (more on that later). It's not terribly pretty, but it hints at how R works and how you will use it in the future. The summary function used below is a nice data exploration function that you may use in the ^future^.
+
+```{r}
+library(knitr)
+kable(summary(cars),caption="I made this table with kable in the knitr package library")
+```
+
+And now you've almost finished your first RMarkdown! Feeling excited? We are! In fact, we're so excited that maybe we need a big finale eh? Here's ours! Include a fun gif of your choice!
+
+![](https://media.giphy.com/media/NShj43GYPxikU/giphy.gif)
+
+
+
+# ggplot2 Tutorial
+```{r}
+#load tidyverse
+library("tidyverse")
+
+#load phyloseq
+source("https://bioconductor.org/biocLite.R")
+biocLite("phyloseq")
+library("phyloseq")
+```
+
+#### Import data 
+```{r}
+metadata = read.table(file="Saanich.metadata.txt", header=TRUE, row.names=1, sep="\t")
+OTU = read.table(file="Saanich.OTU.txt", header=TRUE, row.names=1, sep="\t", na.strings="NAN", "NA", ".")
+load("phyloseq_object.RData")
+```
+
+#### Dot plots
+```{r}
+ggplot(metadata, aes(x=O2_uM, y=Depth_m)) +
+  geom_point(color="blue")
+```
+
+#### Exercise 1: SiO2 graph with purple triangles 
+```{r}
+#shape 17 are triangles and specify color to be purple
+ggplot(metadata, aes(x=SiO2_uM, y=Depth_m)) + 
+  #shape 17 are triangles and specify color to be purple
+  geom_point(color="purple", shape=17)  
+```
+
+#### Exercise 2
+Changing from celcius to fahrenheit using mutate then chain together ggplot function using dplyr 
+```{r}
+metadata %>% 
+  select(Depth_m, Temperature_C) %>% 
+  #mutate to change to fahrenheit
+  mutate(Temperature_F = (Temperature_C*1.8)+32) %>% 
+  #use dplyr and ggplot to create graph
+  ggplot(aes(x=Temperature_F, y=Depth_m))+ 
+  geom_point()
+```
+
+##### Use ggplot with phyloseq because it understands taxonomy
+```{r}
+physeq
+```
+
+##### Plot the phylum level by specifying the fill
+```{r}
+plot_bar(physeq, fill="Phylum")
+```
+
+##### Plot the phylum level so that abundances are the same (change it into a percentage using physeq_percent)
+```{r}
+physeq_percent = transform_sample_counts(physeq, function(x) 100 * x/sum(x))
+plot_bar(physeq_percent, fill="Phylum")
+```
+
+##### Plot the phylum level and get rid of the black lines using geombar
+```{r}
+plot_bar(physeq_percent, fill="Phylum") + 
+  #stat means that it doesn't see OTUs as separate data 
+  geom_bar(aes(fill=Phylum), stat="identity")
+```
+
+#### Exercise 3: Bar plot with Order
+```{r, fig.width=20, fig.height=10}
+physeq_percent = transform_sample_counts(physeq, function(x) 100 * x/sum(x))
+#change the fill to order 
+plot_bar(physeq_percent, fill = "Order") +
+  geom_bar(aes(fill=Phylum), stat="identity") +
+  #add in axes and title of graphs
+  labs(title = "Order from 10 to 200m Saanich Inlet", x="Sample depth", y="Percent relative abundance") 
+```
+
+#### Faceting
+Good for low abundance taxa so we can see it
+```{r, fig.width=15, fig.height=10}
+plot_bar(physeq_percent, fill="Phylum") +
+  geom_bar(aes(fill=Phylum), stat="identity") +
+  #use scales="free_y" so that each graph has its own scale
+  facet_wrap(~Phylum, scales = "free_y") +
+  #remove the legend
+  theme(legend.position = "none")
+```
+
+#### Exercise 4: Faceted figure of nutrient concentrations 
+Pipeline dplyr functions to ggplot 
+```{r}
+metadata %>% 
+  #select for the nutrients (columns)
+  select(Depth_m, NH4_uM, NO2_uM, NO3_uM, O2_uM, PO4_uM, SiO2_uM) %>% 
+  #gather all nutrients in a column with its associated concentration
+  gather(nutrient, uM,NH4_uM:SiO2_uM ) %>%  
+  ggplot(aes(x=Depth_m, y=uM)) + 
+  geom_line() + 
+  geom_point() +
+  facet_wrap(~nutrient, scales ="free_y")
+```
+  
+  
