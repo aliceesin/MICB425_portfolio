@@ -2,7 +2,10 @@
 title: "DS Friday Assignments"
 author: "Alice Sin (16528144)"
 date: "February 15, 2018"
-output: html_document
+output: 
+  html_document:
+    toc: yes
+
 ---
 
 # R Markdown Pretty html Challenge 
