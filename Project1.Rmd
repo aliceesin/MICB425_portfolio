@@ -1,0 +1,170 @@
+---
+title: "Project 1"
+author: "Alice Sin (16528144)"
+date: "March 8, 2018"
+output: html_document
+---
+```{r}
+library("tidyverse")
+library("phyloseq")
+```
+```{r}
+load("mothur_phyloseq.Rdata")
+load("qiime2_phyloseq.RData")
+```
+```{r}
+set.seed(4832)
+m.norm = rarefy_even_depth(mothur, sample.size=100000)
+m.perc = transform_sample_counts(m.norm, function(x) 100 * x/sum(x))
+```
+
+Load mothur physeq object  
+```{r}
+m.norm
+```
+
+Load QIIME2 physeq object
+```{r}
+set.seed(4832)
+q.norm = rarefy_even_depth(qiime2, sample.size=100000)
+q.perc = transform_sample_counts(q.norm, function(x) 100 * x/sum(x))
+```
+```{r}
+plot_bar(mothur, fill="Phylum")
+  #geom_bar(aes(fill=Phylum), stat="identity")
+```
+
+```{r, fig.width=30, fig.height=10}
+#mothur_percent = transform_sample_counts(mothur, function(x) 100 * x/sum(x))
+plot_bar(m.norm, fill="Family")+
+  geom_bar(aes(fill=Family), stat="identity")
+```
+
+```{r}
+q.norm %>% 
+  subset_taxa(Phylum =="Planctomycetes") 
+
+```
+```{r}
+# Calculate
+m.alpha = estimate_richness(m.norm, measures = c("Chao1", "Shannon"))
+
+# Combine these data with the rest of the geochemical data so that we have 1 data frame to work with in future plots. Note use of the rownames_to_column function which mutates the dataframes to have a new column containing the row names data (because the tidyverse doesn't understand row names).
+m.meta.alpha = full_join(rownames_to_column(m.alpha), rownames_to_column(data.frame(m.perc@sam_data)), by = "rowname")
+
+m.meta.alpha
+```
+### Alpha-diversity by oxic/anoxic
+```{r}
+m.meta.alpha %>% 
+  mutate(O2_group = ifelse(O2_uM == 0, "anoxic", "oxic")) %>% 
+
+# Use this in a plot
+ggplot() +
+  geom_boxplot(aes(x=O2_group, y=Shannon)) +
+  labs(title="Alpha-diversity by oxic/anoxic", y="Shannon's diversity index", x="Oxygen")
+```
+
+### Taxa Abundance
+```{r, fig.width=10}
+m.perc %>% 
+  
+plot_bar(fill="Phylum") + 
+  geom_bar(aes(fill=Phylum), stat="identity") +
+  facet_wrap(~Phylum, scales="free_y") +
+  labs(title="Abundance across depths", x="Depth (m)") +
+  theme(legend.position="none")
+  
+```
+### Significance in taxa by depth
+```{r}
+m.norm %>% 
+  subset_taxa(Phylum=="Planctomycetes") %>% 
+  tax_glom(taxrank = 'Phylum') %>%
+  psmelt() %>%
+
+  lm(Abundance ~ Depth_m, .) %>% 
+  summary()
+```
+### Abundance of OTUs by oxygen concentration
+```{r}
+m.perc %>% 
+  subset_taxa(Phylum=="Planctomycetes") %>% 
+  psmelt() %>% 
+  group_by(Sample) %>% 
+  summarize(Abundance_sum=sum(Abundance), O2_uM=mean(O2_uM)) %>% 
+  
+ggplot() +
+  geom_point(aes(x=O2_uM, y=Abundance_sum)) +
+  geom_smooth(method='lm', aes(x=as.numeric(O2_uM), y=Abundance_sum)) +
+  labs(title="Abundance Planctomycetes across O2 concentration")
+```
+### OTUs within samples
+```{r}
+m.norm %>% 
+  subset_taxa(Phylum=="Planctomycetes") %>%
+  #psmelt() %>%
+  estimate_richness(measures = c("Observed")) 
+  
+  #ggplot() +
+  #geom_bar(aes(x=Depth_m, y=estimate_richness(measures = c("Observed"))))
+```
+
+### Abundance of OTUs across Depth
+```{r}
+m.norm %>% 
+  subset_taxa(Phylum=="Planctomycetes") %>% 
+  plot_richness(measures=c("Observed")) +
+  labs(title="Abundance of OTUs across different depths", x="Depth (m)", y="Number")
+```
+```{r, fig.width=10, fig.height=10}
+m.perc %>% 
+  subset_taxa(Phylum=="Planctomycetes") %>%
+  psmelt() %>% 
+  
+ggplot() +
+  geom_point(aes(x=O2_uM, y=OTU, size=Abundance, color=OTU)) + 
+  scale_size_continuous(range = c(0,5)) +
+  labs(title="Abundance of OTUs within Planctomycetes across O2 concentration")
+```
+```{r}
+m.norm %>% 
+  psmelt() %>% 
+  filter(OTU=="Otu0045") %>% 
+
+  lm(Abundance ~ Depth_m, .) %>% 
+  summary()
+```
+
+```{r, fig.height=30}
+m.perc %>% 
+  subset_taxa(Phylum=="Planctomycetes") %>% 
+  psmelt() %>% 
+  
+ggplot() +
+  geom_point(aes(x=Depth_m, y=Abundance)) +
+  geom_smooth(method='lm', aes(x=Depth_m, y=Abundance)) +
+  facet_wrap(~OTU, scales="free_y") +
+  labs(title="Example 8: Abundance of OTUs within unclassified domain across depth")
+```
+
+```{r}
+m.otu <- as.data.frame(mothur@otu_table)
+```
+
+```{r}
+qiime2_percent = transform_sample_counts(qiime2, function(x) 100 * x/sum(x))
+plot_bar(qiime2_percent, fill="Phylum")+
+  geom_bar(aes(fill=Phylum), stat="identity")
+```
+### Finding p-value of OTUs
+```{r}
+for(subset_taxa(Phylum=="Planctomycetes")) {
+  psmelt() %>% 
+  filter(OTU) %>%
+  lm(Abundance ~ Depth_m, .) %>% 
+  
+  summary()
+  }
+
+```
