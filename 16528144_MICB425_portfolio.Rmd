@@ -4,18 +4,28 @@ author: "Alice Sin (16528144)"
 date: "version `r format(Sys.time(), '%B %d, %Y')`"
 output: 
   html_document:
+    df_print: paged
     toc: yes
+    toc_float:
+      collapsed: no
+  pdf_document:
+    toc: yes
+mainfont: Arial
+fontsize: 11 pt
+editor_options:
+  chunk_output_type: console
+urlcolor: blue
+  
 ---
 # Module 01
 
 ## Data science Friday  
-DS Friday Assignments are in a separate .Rmd file. 
+DS Friday Assignments are in a separate .Rmd file under Data_Science_Fridays.Rmd 
 
 ### Installation check
-Third level headers (###) should be used for links to assignments, evidence worksheets, problem sets, and readings, as seen here.  
 
-Use this space to include your installation screenshots.
-
+![Rstudio](Installation_screenshot_1.JPG)
+![Github Homepage](Installation_screenshot_2.JPG)
 
 
 ### Portfolio repo setup
@@ -25,19 +35,8 @@ git commit -m "input message"
 git push
 ```
 
-
-### RMarkdown pretty html challenge
-It is in a separate document. 
-
-
-
 ## Origins and Earth Systems
-### Evidence worksheet 01 
-The template for the first Evidence Worksheet has been included here. The first thing for any assignment should link(s) to any relevant literature (which should be included as full citations in a module references section below).
-
-You can copy-paste in the answers you recorded when working through the evidence worksheet into this portfolio template. 
-
-As you include Evidence worksheets and Problem sets in the future, ensure that you delineate Questions/Learning Objectives/etc. by using headers that are 4th level and greater. This will still create header markings when you render (knit) the document, but will exclude these levels from the Table of Contents. That's a good thing. You don't' want to clutter the Table of Contents too much.
+### Evidence Worksheet_01 "Prokaryotes: The Unseen Majority"
 
 [Whitman *et al* 1998](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC33863/)
 
@@ -45,46 +44,54 @@ As you include Evidence worksheets and Problem sets in the future, ensure that y
 Describe the numerical abundance of microbial life in relation to ecology and biogeochemistry of Earth systems. 
 
 #### General questions
-**What were the main questions being asked?**  
-How many prokaryotes are there on Earth?  
-What is the abundance and location of microbes on Earth?  
-Carbon content of prokaryotes inhabited in different areas?  
+What were the main questions being asked?
 
-**What were the primary methodological approaches used?**  
-- Large assumptions are made with a small sample size to estimate numbers for the entire Earth and especially for subsurface  
+- How many prokaryotes are there on Earth?  
+- What is the abundance and location of microbes on Earth?  
+- What is the carbon content of prokaryotes inhabited in different areas?  
+
+What were the primary methodological approaches used?
+
+- Large assumptions were made with a small sample size to estimate numbers for the entire Earth and especially for subsurface  
 - Used average cell density to determine prokaryotes in the open ocean  
 - Estimation using Gold: average porosity of the terrestrial surface is 3% and then assumed how much pore space each prokaryote will occupy  
-- Estimation of carbon content by using number of cells in open ocean, cells, subsurface 
+-     Estimation of carbon content by using number of cells in open ocean, cells, and subsurface 
 
-**Summarize the main results or findings**  
+Summarize the main results or findings
+
 -	Prokaryotes are found in the open ocean, soil, oceanic and terrestrial subsurfaces  
 -	Most of the prokaryotes on Earth’s biosphere are found in the subsurface but it is hard to calculate a precise number  
--	Prokaryotes also found in other habitats such as animals, leaves, and air but the content is much lower and impacts the total number of prokaryotes a lot less  
+-	Prokaryotes are also found in other habitats such as animals, leaves, and air but the content is much lower and the impact of the total number of prokaryotes a lot less  
 -	Prokaryotes are a large reservoir for essential nutrients such as nitrogen, carbon, phosphorus
-o	60-100% of the carbon on earth is from prokaryotes  
-o	More N & P than in plants  
+-	60-100% of the carbon on earth is from prokaryotes  
+-	Prokaryotes contain 10 times more nitrogen and phosphorus than plants  
 -	Highest prokaryotes in air is 60-70m in the air  
--	Large amounts of autotrophs above 200m, likely to provide energy for those at lower trophic levels  
--	Mutations and rare genetic events are more likely to occur in the ocean and will use higher amount of carbon (higher turnover rate  more mutations occur)which leads to greater genetic diversity which leads to the formation of novel species so that new pathways can form for the global environment  
+-	A large amounts of autotrophs are situated above 200m and are likely to provide energy for those at lower trophic levels  
+- Mutations and rare genetic events are more likely to occur in the ocean and will use a higher amount of carbon as the higher turnover rate means the more mutations occur. This leads to a greater genetic diversity and ultimately the formation of a novel species that generates new pathways that helps form the global environment. 
 
-**Do new questions arise from the results**  
+Do new questions arise from the results?   
+
 -	How do we distinguish between species of prokaryotes if there are so many genetic modifications?
 -	What needs to be taken into account to distinguish prokaryotes and eukaryotes when prokaryotes have such a high turnover rate?  
--	We don’t know the exact composition of each microbes?  
+-	What is the exact composition of each individual microbe?
 -	The paper is from 1998 so are the numbers still accurate? How much has changed since then?   
 - Is there better technology out there to make these calculations? Or would we still use cell density/porosity, etc?  
 
 
-**Were there any specific challenges or advantages in understanding the paper (*e.g.* did the authors provide sufficient background information to understand experimental logic, were methods explained adequately, were any specific assumptions made, were conclusions justified based on the evidence, were the figures or tables useful and easy to understand)?**  
+Were there any specific challenges or advantages in understanding the paper (*e.g.* did the authors provide sufficient background information to understand experimental logic, were methods explained adequately, were any specific assumptions made, were conclusions justified based on the evidence, were the figures or tables useful and easy to understand)?
 
 -	Estimation/assumptions aren’t explained thoroughly  
 -	Don’t show the actual calculations made so it is harder to believe  
--	Don’t know the amount of error in their calculations  only give a single number  
--	What is the uncertainty?  
+-	Don’t know the amount of error in their calculations as they only give a single number
+- What is the uncertainty?  
 
 ### Evidence Worksheet_02 “Life and the Evolution of Earth’s Atmosphere”
+
+[Kasting and Siefert 2003](https://www.ncbi.nlm.nih.gov/pubmed/12004117)
+
 #### Learning objectives: 
-Comment on the emergence of microbial life and the evolution of Earth systems
+
+* Comment on the emergence of microbial life and the evolution of Earth systems
     
     
 * Indicate the key events in the evolution of Earth systems at each approximate moment in the time series. If times need to be adjusted or added to the timeline to fully account for the development of Earth systems, please do so. 
@@ -95,9 +102,9 @@ Comment on the emergence of microbial life and the evolution of Earth systems
     
     + 3.8 billion years ago  - Existence of Life
     
-    + 3.75 billion years ago  - LHB meteorites
+    + 3.75 billion years ago  - LHB meteorites; formation of Archaea 
     
-    + 3.5 billion years ago - Microfossils and stromalites present
+    + 3.5 billion years ago - Microfossils and stromalites are present; Rubisco might have been developed around this time
     
     + 3.0 billion years ago  - Cyanobacteria photosynthesize
     
@@ -137,7 +144,52 @@ Comment on the emergence of microbial life and the evolution of Earth systems
     High atmospheric O2
     Coal deposits from organisms that died from extinction 
 
-### Problem set 01
+### Evidence Worksheet_03 "The Anthropocene"
+
+[Rockstrom *et al* 2009](https://www.nature.com/articles/461472a)
+
+#### Learning Objectives
+Evaluate human impacts on the ecology and biogeochemistry of Earth systems.
+
+
+#### General Questions
+
+What were the main questions being asked?
+
+-	Which Earth-system processes thresholds, when crossed could generate unaccceptable environmental changes?  
+-	Which Earth-system processes have already crossed the safe threshold for the Earth system to function?   
+
+What were the primary methodological approaches used?  
+
+-	Proposed a framework based on “planetary boundaries” that define the safe operating space for humanity 
+-	To generate the threshold for most of the systems, the authors used a control variable if it was possible although some of them are more difficult  
+
+Summarize the main results or findings. 
+
+-	There are 9 processes that are necessary to define planetary boundaries: climate change, rate of biodiversity loss, interference with the nitrogen and phosphorous cycles, stratospheric ozone depletion, ocean acidification, global fresh water use, change in land use, chemical pollution, and atmospheric aerosol landing 
+-	Humanity is approaching the boundary for global freshwater use, change in land use, ocean acidification and interference with the global phosphorus cycle
+-	Climate change, rate of biodiversity loss and interference with the nitrogen cycle have already passed their proposed boundaries 
+-	Earth cannot sustain the current loss of biodiversity without any significant erosion of ecosystem resilience 
+-	As the boundary of one process is transgressed, then the other boundaries are also under serious risk 
+-	Earth’s subsystems are moving outside of the stable Holocene state and may be moving into a new Anthropocene state
+
+Do new questions arise from the results?
+
+-	As the authors have mentioned, all the systems are interlinked. So, if the threshold of one is passed, the others are affected as well. But there lacks solid understanding of the implications of the other systems when one boundary has been exceeded
+-	How long will it take to cause dangerous environmental changes? 
+-	Is it possible to return the Earth’s systems to safe levels? 
+
+Were there any specific challenges or advantages in understanding the paper (e.g. did the authors provide sufficient background information to understand experimental logic, were methods explained adequately, were any specific assumptions made, were conclusions justified based on the evidence, were the figures or tables useful and easy to understand)?
+
+-	I particularly enjoyed the figures and tables in this paper as it made the data much easier to understand 
+-	The figures in particular were a great visual to show how we are reaching or may have passed the threshold for certain processes 
+-	The methods as to how they derived the numbers were not explained in detail, however it appears that it can be found in ref 10. 
+
+
+### Problem set_01 "Prokaryotes: The Unseen Majority"
+
+[Whitman *et al* 1998](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC33863/)
+
 #### Learning objectives: 
 Describe the numerical abundance of microbial life in relation to the ecology and biogeochemistry of Earth systems.
 
@@ -151,12 +203,13 @@ Terrestrial subsurface = 0.25 - 2.5x10^30^ cells
 Total subsurface = 3.8 x 10^30^ cells  
 
 
-
 **What is the estimated prokaryotic cell abundance in the upper 200 m of the ocean and what fraction of this biomass is represented by marine cyanobacterium including Prochlorococcus? What is the significance of this ratio with respect to carbon cycling in the ocean and the atmospheric composition of the Earth?**  
 
-3.6x10^28 cells in the upper 200m of the ocean  
-2.9x 10^27 cells are autotrophs  
-Upper 200m autotrophs: 5x10^5/mL mostly Prochlorococcus (avg density 10*10^4^/mL) which is about 8% of the biomass so that means carbon is availalbe for the 92% of heterotrophs
+3.6x10^28^ cells in the upper 200m of the ocean  
+2.9x 10^27^ cells are autotrophs  
+Upper 200m autotrophs: 5x10^5^/mL mostly Prochlorococcus (avg density 10*10^4^/mL) which is about 8% of the biomass so that means carbon is available for 92% of heterotrophs
+
+This ratio shows that a majority of the carbon cycling or fixation occurs in the ocean and that these autotrophs are important players in control of the atmospheric composition of the Earth.  
 
 
 **What is the difference between an autotroph, heterotroph, and a lithotroph based on information provided in the text?** 
@@ -169,12 +222,12 @@ Lithotroph – it uses inorganic substrates to produce energy
 
 **Based on information provided in the text and your knowledge of geography what is the deepest habitat capable of supporting prokaryotic life? What is the primary limiting factor at this depth?**  
 
-Life up until the terrestrial subsurface (3-4km). The deepest point in the ocean is Mariana's Trench (10.9km deep) so the lowest point of life could exist at 14.9km deep. The limiting factor is the temperature (125 degrees Celsius)
+Life exists until the terrestrial subsurface (3-4km). The deepest point in the ocean is Mariana's Trench (10.9km deep) so the lowest point of life could exist at 14.9km deep. The limiting factor is the temperature (125 degrees Celsius).
 
 **Based on information provided in the text your knowledge of geography what is the highest habitat capable of supporting prokaryotic life? What is the primary limiting factor at this height?**  
 
 Highest habitat: Mount Everest (8.8km above sea level)  
-The primary limiting factors: lack of nutrients, lack of moisture, high amounts of ionizing radiation
+The primary limiting factors: lack of nutrients, lack of moisture, and high amounts of ionizing radiation.
 
 **Based on estimates of prokaryotic habitat limitation, what is the vertical distance of the Earth’s biosphere measured in km?**  
 Top of Mount Everest (8.8km) + Mariana's Trench (10.9km) + ground surface (4km) = 24km vertical distance 
@@ -195,22 +248,24 @@ Sample calculation
 Author: assumption that carbon efficiency = 20%  
 Assuming that it is 20fg of C/prokaryotic cell = 20^-30^ petagrams  
 
-The amount of carbon in marine heterotrophs (pg/cell) = 3.6x10^28^ * 20^-30^pg of C/cell  
+The amount of carbon in marine heterotrophs (Pg/cell) = 3.6x10^28^ * 20^-30^Pg of C/cell  
 The amount of carbon in marine heterotrophs = 0.72  
 If we use a 4 multiplier:  
 4 x 0.72 = 2.88 pg of C/year  
 
-This will vary with depth in the ocean and terrestrial and marine habitats because the amount of carbon consumed will vary depending on location and so will the microbial relationships in the population or amongst populations. 
+This will vary with depth in the ocean and terrestrial and marine habitats because the amount of carbon consumed will also vary depending on location and so will the microbial relationships in the population or amongst populations. 
 
 
 **How were the frequency numbers for four simultaneous mutations in shared genes determined for marine heterotrophs and marine autotrophs given an average mutation rate of 4 x 10^-7^ per DNA replication? (Provide an example of the calculation with units. Hint: cell and generation cancel out)**   
 
-4x10^-7 mutations per DNA replication  
+
+4x10^-7^ mutations per DNA replication  
 Want 4 of them to happen at once = 4x10^-7^ * 10^-4^ = 2.56x10^-26^  
 3.6x10^28^ cells * 365/16 days = 22.8 turnovers per year  
 6.8x10^24^ cels * 22.8 = 8.2 x 10^29^ cells / year  
-8.2x10^29^ cells/year * 2.56x10^26^   mutations/generation = 2.1 x 10^4 mutations per year
+8.2x10^29^ cells/year * 2.56x10^26^   mutations/generation = 2.1 x 10^4^ mutations per year
 If we convert to h per mutations: 0.4h/ point mutation 
+
 
 **Given the large population size and high mutation rate of prokaryotic cells, what are the implications with respect to genetic diversity and adaptive potential? Are point mutations the only way in which microbial genomes diversify and adapt?**   
 
@@ -220,10 +275,13 @@ Mutations can be gained through plasmids (horizontal gene transfer), recombinati
 
 **What relationships can be inferred between prokaryotic abundance, diversity, and metabolic potential based on the information provided in the text?**  
 
-The abundance of prokaryotes and its rapid replication leads to a high mutation rate. This increases its diversity in a population, which in turn increases the metabolic potential. 
+The abundance of prokaryotes and its rapid replication leads to a high mutation rate. This increases its diversity in a population, which in turn increases the metabolic potential. Its increase in metabolic potential may have other implications such as the creation of new metabolic niches unique to a specific ecotype. 
 
     
 ### Problem set_02 “Microbial Engines”
+
+[Falkowski *et al* 2008](https://www.ncbi.nlm.nih.gov/pubmed/18497287)
+
 #### Learning objectives: 
 Discuss the role of microbial diversity and formation of coupled metabolism in driving global biogeochemical cycles.
 
@@ -245,7 +303,7 @@ The evolution of microbial metabolic and geochemical processes create redox cond
 
 **How do reversible electron transfer reactions give rise to element and nutrient cycles at different ecological scales? What strategies do microbes use to overcome thermodynamic barriers to reversible electron flow?**  
 
-The cycles can be oxidative or reductive and feed into new reactions to create cycles.Element and nutrient cycles arise via the reversible electron transfer When the hydrogen tension is low because the reverse process then becomes more favourable. To overcome the thermodynamic barriers of reversible electron flow, different species of microbes come together to pool their synergistic flow.
+The cycles can be oxidative or reductive and can feed into new reactions to create cycles. Element and nutrient cycles arise via the reversible electron transfer. When the hydrogen tension is low, the reverse process then becomes more favourable. To overcome the thermodynamic barriers of reversible electron flow, different species of microbes come together to pool their synergistic flow.
 
 **Using information provided in the text, describe how the nitrogen cycle partitions between different redox “niches” and microbial groups. Is there a relationship between the nitrogen cycle and climate change?**  
 
@@ -260,52 +318,105 @@ There is low metabolic diversity in essential multimeric microbial machines desp
 
 **On what basis do the authors consider microbes the guardians of metabolism?**  
 
-The authors consider microbes the guardians of metabolism because microbes are able to protect the metabolic pathway when under environmental selection or strong environmental perturbations. In the occassion that a taxonomic unit undergoes extinction, another unit is able to keep the metabolic alive. 
+The authors consider microbes the guardians of metabolism because microbes are able to protect the metabolic pathway while under environmental selection or strong environmental perturbations. In the occasion that a taxonomic unit undergoes extinction, there will be another unit that contains the genetic information necessary to keep the metabolic cycle alive. 
 
 ### Writing assessment_01: "Microbial Engines and Humans"
 
-  Where the final goal is to keep the human species alive, I believe that it is vital and necessary that microbes stay alive and continue to contribute to the global catalysis. This is because the products generated in the biogeochemical cycles are essential to life on this planet, which is also inclusive of humans. As indicated by our currently rapidly changing environment, we may be entering a new epoch and through history, microbes have shown us they have been able to survive through tough environmental conditions and selective pressures. It would be beneficial then, to have microbes by our side through this drastic environmental change. Although technological advances have brought us very far and has revealed a lot about how microbes function, there is still a gap in knowledge that prevents us from replicating their exact pathway, leading to our dependency on microbes. Microbial life can easily live with us, however, we cannot survive without the global catalysis and environmental transformations it provides.  
-Microbes are a major contributor to important cycles which include both biogeochemical and waste cycles that are essential to human life. As the human population increases, there are increasing amounts of waste and wastewater generated in every city (1). Therefore, there needs to be an efficient method in treating wastewater that is typically rich with major nutrients within it such as nitrogen, phosphorus, carbon, and minor nutrients (1). The natural ecosystem and the natural ability for microbes to decompose, degrade, mineralize, and stabilize organic matter is a low cost and effective method as they short generation time and high metabolic rate per unit biomass in the degradation of sewage water (1). An example of treating wastewater is the transformation of organic to inorganic phosphates and taking other nutrients out of the wastewater for other uses (1). Using microbes to treat wastewater is superior as it has reduced the biological oxygen demand by 90-95% (1).  
+Where the final goal is to keep the human species alive, I believe that it is both vital and necessary for microbes stay alive and continue to contribute to the global catalysis. Throughout history, time and time again, microbes have shown us that they are resilient and are able to persist through tough environmental conditions and selective pressures. The current rapid changes to our environment allude to the introduction of a new epoch on Earth. As such, it would be beneficial to have microbes that are well-equipped to overcome drastic changes in the environment, to be on our side and to work together with us. It is true that technological advances have brought us very far and has revealed a lot about how microbes function, but there is still a gap in knowledge that prevents us from replicating their exact pathway, leading to our dependency on them. Microbial life can easily live with us; however, we cannot survive without the global catalysis and environmental transformations it provides. 
 
-  The resiliency of microbes to extreme environmental changes ensures its survival while humans are unable to withstand similar pressures. It is believed that a new epoch called the Anthropocene, in which humans have become the main driver of global environment change has descended upon us and that we have left the much more stable Holocene epoch where humans thrived and civilizations were able to arise (2, 3). It is believed that the Anthropocene was initiated by the beginning of the Industrial Revolution in which agriculture and industrialization grew at an accelerating rate (2). The advancement of such technologies during the industrial revolution has resulted in such a large-scale human impact on the environment that the landscape has immeasurably changed (2). This is evident through the nitrate levels of Greenland ice that have spiked unseen levels in the last 100,000 years due to the necessity of nitrogen for agricultural use (2). In addition, sediments and nonglacial organic matter has been found to contain plastics, radionuclides, pesticides, and metals due to increasing greenhouse gases that were previously unprecedented clearly draws a clear distinction from the Holocene epoch (2). It was expected that had humans not pressurized the environment through fossil fuels and agriculture, the Holoscene continue for another several thousand years (3).   
-  
-  The rapidly changing environment has lead to the global warming of temperatures and the continuous increase can only lead to irreversible climate change. A boundary for climate change was calculated and proposed based on the atmospheric concentration of carbon dioxide and the radiative forcing which is the amount of energy produced per unit area of the globe (3). In the case that these boundaries are breached, it is believed that we will risk irreversible climate change (3). The boundary was calculated to be 350ppm of CO2 and 1 watt per square meter and according to those parameters, our current Earth has already surpassed those numbers with 387 ppm of CO2 and 1.5 watts per metre squared change in radiative forcing (3). The retreating Arctic polar sheets and the rising sea levels is additional evidence that show support of the Earth moving into a new, warmer era, one that is outside of the stable Holocene era (3).  
-  
-  All of these large environmental changes are nothing new to many microbes such as cyanobacteria have been dated to survive since the Archean era, around 2.4 billion years ago (4). The existence of cyanobacteria has lead to the great oxygenation event, bringing about plants and animals, which is also inclusive of the present, oxygenated Earth humans inhabit (4). Dating back to 2.4 billion years ago shows that microbes such as cyanobacteria have been able to survive through multiple epochs with varying climates, indicating that it too is able to survive past this rapidly changing environment we are heading towards (4). If it is true that we are heading into irreversible climate changes, then microbes will be an invaluable ally and resource for humans to battle such drastic changes (3, 4).  
-  
-  A factor that plays into the microbes’ resilient nature to changing environments the horizontal gene flow through much of its early cellular evolution which resonates even today (5).  Entire metabolic pathways, including those that are essential to the biogeochemical cycle can be horizontally transferred to other species that may be typically responsible for other functions (5). Horizontal gene transfer is powerful in that it allows metabolic pathways to be conserved over time in the occasion that a taxonomic unit that originally had the pathway undergoes extinction (5).   
-  
-  In addition to the conservation of essential metabolic pathways, the environmental selection pressures on the microbes can lead to evolution of boutique, or accessory genes that can ultimately protect the metabolic pathway (5). Even in the event that a microbial machine (or pathway) functions at sub-optimal levels, they tend to be retained with minimal changes (5). Instead, new proteins will be generated or other mechanisms will be developed to support the use of the pathway (5). An example for this is the protein nitrogenase, one of the most important proteins for nitrogen-fixation that only functions in aerobic environments (5). However, most nitrogen-fixing microbes live in aerobic environments and to maintain the use of nitrogenase, organisms have protected the enzyme from oxygen by fixing nitrogen in aerobic environments (5). Horizontal gene transfer and the protective role microbes play in protecting essential metabolic pathways is evidence that in the case that microbes do have to undergo great selective pressures, as a population with multiple functions, they are able to overcome it (5).  
-  
-  The ability for multiple species of microbes to contribute to a larger pathway is also an advantage that gives microbes the edge over humans (5). An example would be nitrogen-fixation in which there are multiple microbes that are spatially segregated working together (5). Because nitrogenase is only able to function in anaerobic environments nitrogen-fixation was split down into parts where ammonia is initially oxidized by certain Archaea or Bacteria to nitrite and then from nitrite to nitrate by chemoautotrophic microbes, and finally, opportunistic microbes using nitrate and nitrate as electron acceptors to produce N2 (5).  
-  
-  Multiple species of microbes working together, combining multiple pathways in order to reach a final end product is a process that is difficult to replicate by humans due to the lack of knowledge about microbial structures, all the pathways currently used, and the proteins used (5). Although technology has advanced enough that we are able to use metagenomics to sequence full genomes of microbes, there is still not enough information for us to fully replicate what microbes do (5). This deficiency in knowledge has lead to human’s dependency on microbes. As such, we cannot live without microbes, but perhaps, as we become more knowledgeable through time, there is opportunity to use the technology we have discovered to help microbes in creating a planet that is continuously habitable in the future, despite us having possibly left the more stable Holocene epoch (3). 
-  
-  The global catalysis and the biogeochemical cycles of microbes are important to humans. Its role in waste cycling and its resiliency through environmental extremes shows that microbes play a strong role in our current lifestyle but was essential to introducing life on this planet (1). Its ability to retain essential metabolic pathways through many generations and use of multiple microbial species to carry out specific pathways is something that humans are currently unable to replicate as there is insufficient information on the microbes (5). There is lots of uncertainty in the future as it is hard to predict where our rapidly changing environment will take us in the future. Integrating our technological advancements in conjunction with what microbes are already doing may be a step in the forward direction. An example would be using microbes in a beneficial fashion such as extracting valuable nutrients from waste water while reducing the need for oxygen use. The levels of CO2 are only continuously rising and perhaps working with microbes may lead to a solution.   
+The resiliency of microbes during extreme environmental changes ensures its own survival whereas human beings are unable to withstand similar pressures. It is believed that a new epoch called the Anthropocene, in which humans have become the main driver of global environment change has descended upon us and that we have left the much more stable Holocene epoch where humans thrived and civilizations arose (1, 2). It is believed that the Anthropocene was initiated at the beginning of the Industrial Revolution in which agriculture and industrialization grew at accelerating rates (1). The advancement of technologies during the industrial revolution has resulted in such a large-scale human impact on the environment that the landscape has immeasurably changed; this is evident through the nitrate levels of Greenland ice that have spiked to unseen levels in the last 100,000 years as a result of nitrogen for agricultural use (1). In addition, sediments and nonglacial organic matter have been found to contain plastics, radionuclides, pesticides, and metals while greenhouse gases have increased to unprecedented levels, clearly drawing a distinction from the Holocene epoch (1). It is important to note that had humans not pressurized the environment through fossil fuels and agriculture, the stable Holocene was expected to continue for another several thousand years (2).
+
+The rapidly changing environment has lead to the global warming of temperatures and the continuous increase can only lead to irreversible climate change. A boundary for climate change was calculated and proposed based on the atmospheric concentration of carbon dioxide and radiative forcing (the amount of energy produced per unit area of the globe) (2). According to Rockstrom et al., our current Earth has already breached his proposed boundary numbers and can lead to real risks of irreversible climate change. The retreating Arctic polar sheets and the rising sea levels only act as further evidence that the Earth is now a part of a warmer era, one that is outside of the stable Holocene (2). But these drastic environmental changes are only alarming to humans as they are nothing new to many microbes, especially those that have been around since the Archean era, around 2.4 billion years ago (3). An example of such is Cyanobacteria, which can still be found in our current ocean waters. It has survived through multiple glaciation events and multiple epochs with varying climates throughout time. If it is true that we are heading into irreversible climate change, then microbes will be an invaluable ally and resource as humans attempt to battle such drastic changes (2, 3).
+
+A factor that plays into the microbes’ resilient nature to changing environments is the horizontal gene flow through much of its early cellular evolution. Entire metabolic pathways, including those that are essential to the biogeochemical cycle can be horizontally transferred to other species that are typically responsible for other functions (4). Horizontal gene transfer is powerful in that it allows metabolic pathways to be conserved over time in the occasion that a taxonomic unit with an essential pathway undergoes extinction due to natural disaster or extreme environmental changes (4). The environmental selection pressures can also lead to evolution of boutique, or accessory genes that protect essential metabolic pathways (4). Because of the importance of a certain pathways, even sub-optimally functioning pathways will be kept with minimal changes. Instead, new proteins will be generated or other mechanisms will be developed to support the use of the pathway. An example of this is the protein nitrogenase, one of the most important proteins for nitrogen-fixation that can only function in aerobic environments (4). The caveat is that most nitrogen-fixing microbes live in aerobic environments. Therefore, to maintain the use of nitrogenase, organisms have protected the enzyme by only fixing nitrogen in anaerobic environments (4). This shows that microbes will make adaptations depending on which pathways are essential. Both horizontal gene transfer and the role microbes play in protecting essential metabolic pathways is evidence for microbes being able to overcome great selective pressures (4). 
+
+The ability for multiple species of microbes to contribute to a larger pathway is also an advantage that gives microbes the edge over humans (4). One example is nitrogen-fixation in which there are multiple microbes that are spatially segregated working together (4). Because nitrogenase is only able to function in anaerobic environments, nitrogen-fixation was split down into parts where ammonia gets initially oxidized by certain Archaea or Bacteria to nitrite and then from nitrite to nitrate by chemoautotrophic microbes, and finally, opportunistic microbes will use nitrate as electron acceptors to produce N2 (4). Multiple species of microbes working together and combining multiple pathways to reach an end product is a process that is difficult to replicate by humans due to the lack of knowledge about microbial structures and all the pathways and proteins used (4). Although technology has advanced enough that we are able to use metagenomics to sequence the full genomes of microbes, there is still not enough information for us to fully replicate what microbes do which ultimately leads to our dependency on microbes (4). As such, we cannot live without microbes, but perhaps, as we become more knowledgeable through time, opportunities to use the technology we have discovered will arise to aid us in working together with them to create a planet that is continuously habitable in the future, despite us having possibly left the more stable Holocene epoch (2). 
+
+The global catalysis and the biogeochemical cycles of microbes are important to humans. Their resiliency through environmental extremes is reflected throughout history and is indicative of their capability to adapt to the current changes we are experiencing. Their ability to retain essential metabolic pathways through many generations and use of multiple microbial species to carry out specific pathways is something that humans are currently unable to replicate as there is insufficient information (4). There is lots of uncertainty in the future as it is hard to predict where our rapidly changing environment will take us in the future. Integrating our technological advancements in conjunction with what microbes are already doing may be a step in the forward direction as the Earth continues to change. 
+
+**References**
+
+1. Waters, C. N., Zalasiewicz, J., Summerhayes, C., Barnosky, A. D., Poirier, C., Gałuszka, A., . . . Wolfe, A. P. (2016). The anthropocene is functionally and stratigraphically distinct from the holocene. Science (New York, N.Y.), 351(6269), aad2622-aad2622. 10.1126/science.aad2622
+2. Rockström, J., Steffen, W., Noone, K., Scheffer, M., Teknik- och vetenskapshistoria (bytt namn 20120201), Skolan för arkitektur och samhällsbyggnad (ABE), . . . Filosofi och teknikhistoria. (2009). A safe operating space for humanity. Nature, 461(7263), 472-475. 10.1038/461472a
+3. Nisbet, E. G., & Sleep, N. H. (2001). The habitat and nature of early life. Nature, 409(6823), 1083-1091. 10.1038/35059210
+4. Falkowski, P. G., Fenchel, T., & Delong, E. F. (2008). The microbial engines that drive earth's biogeochemical cycles. Science, 320(5879), 1034-1039. 10.1126/science.1153213
+
 
 
 ### Module 01 references
-Utilize this space to include a bibliography of any literature you want associated with this module. We recommend keeping this as the final header under each module.
 
-An example for Whitman and Wiebe (1998) has been included below.
+Falkowski PG, Fenchel T, Delong EF. The Microbial Engines That Drive Earth’s Biogeochemical Cycles. Science. 2008 May 23;320(5879):1034–9. [PMID18497287](https://www.ncbi.nlm.nih.gov/pubmed/18497287)
+
+Rockström J, Steffen W, Noone K, Persson Å, Iii FSC, Lambin EF, et al. A safe operating space for humanity. Nature. 2009 [Link](https://www.nature.com/articles/461472a)
 
 Whitman WB, Coleman DC, and Wiebe WJ. 1998. Prokaryotes: The unseen majority. Proc Natl Acad Sci USA. 95(12):6578–6583.  [PMC33863](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC33863/)
 
 # Module 02
 
+### Evidence Worksheet_04 “Bacterial Rhodopsin Gene Expression”
+
+[Martinez *et al* 2007](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1838496/)
+
+#### Learning objectives:
+
+- Discuss the relationship between microbial community structure and metabolic diversity
+- Evaluate common methods for studying the diversity of microbial communities
+- Recognize basic design elements in metagenomic workflows
+
+#### General Questions
+
+What were the main questions asked?
+
+-	What are the functions and physiological roles of marine microbial photorhodopsin? 
+-	Why is the PR system so ubiquitous? 
+-	What is the function of the photosystem and opsin biosynthetic pathway gene products?
+
+What were the primary methodological approaches used?
+
+-	Screened large-insert DNA libraries derived from picoplankton for visibly detectable PR-expressing phenotypes
+-	The fosmid clones were then sequenced and annotated
+-	HPLC analysis was used to identify the pigments present
+
+What were the primary methodological approaches used?
+
+-	Screened large-insert DNA libraries derived from picoplankton for visibly detectable PR-expressing phenotypes
+-	The fosmid clones were then sequenced and annotated
+-	HPLC analysis was used to identify the pigments present
+
+Summarize the main results or findings. 
+
+-	Intact PR-based photosystems can be functionally expressed in E. Coli without addition of exogenous photopigment 
+-	Functional screening approach is useful for identifying specific activities or phenotypes without any sequence information available 
+-	Only six genes are needed to enable light-activated proton translocation and photophosphorylation 
+-	Only a single horizontal transfer event is needed for a PR system to be introduced into an organism which ultimately explains the high prevalence of PR systems 
+
+Do new questions arise from the results?
+
+-	What is the prevalence of PR systems in other microorganisms outside of E. Coli? 
+-	Just how widespread is this prevalence?
+-	Is there a reason as to why there is a greater prevalence of PR systems amongst marine microorganisms? 
+
+Were there any specific challenges or advantages in understanding the paper (e.g. did the authors provide sufficient background information to understand experimental logic, were methods explained adequately, were any specific assumptions made, were conclusions justified based on the evidence, were the figures or tables useful and easy to understand)? 
+
+-	I thought the figures were easy to read but the methods section was a little lacking as there could be a greater explanation on the reason as to why specific assays or methods were chosen. 
+
+
 ### Problem set_03 “Metagenomics: Genomic Analysis of Microbial Communities”
 #### Learning objectives: 
 Specific emphasis should be placed on the process used to find the answer. Be as comprehensive as possible e.g. provide URLs for web sources, literature citations, etc.  
-*(Reminders for how to format links, etc in RMarkdown are in the RMarkdown Cheat Sheets)*
 
 #### Specific Questions:
 * How many prokaryotic divisions have been described and how many have no cultured representatives (microbial dark matter)?
+
     - 98 bacterial phyla
     - 20 archael phyla 
     - information is gathered from small 16S rRNA databases (sequence information)
     - but there could be up to 1500 bacterial phyla because there are microbes that live in the shadow biosphere 
+    
+[Rappé and Giovannoni 2003](https://www.annualreviews.org/doi/abs/10.1146/annurev.micro.57.030502.090759?rfr_dat=cr_pub%3Dpubmed&url_ver=Z39.88-2003&rfr_id=ori%3Arid%3Acrossref.org&journalCode=micro&), [Solden *et al* 2016](https://www.sciencedirect.com/science/article/pii/S1369527416300558), [Youssef *et al* 2015](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4522544/)
 
 * How many metagenome sequencing projects are currently available in the public domain and what types of environments are they sourced from?
+
     - 110 000 on EBI database but it is always changing
     - Environments: ALL
         - sediments, soil, gut, aquatic
@@ -313,22 +424,22 @@ Specific emphasis should be placed on the process used to find the answer. Be as
 
 * What types of on-line resources are available for warehousing and/or analyzing environmental sequence information (provide names, URLS and applications)?  
 
-    - Warehousing sequence information: INT/M, MG-RAGT (also does processing), NCBI (databases you can search that feed into other pipelines)
-    - Biodiversity analysis: EstimateS
-    - Microbial biodiversity analysis: MOTHUR, QIIME2
-    - Binning sequences: MEGAN, CARMA  
+    - Warehousing sequence information: [IMG/M](http://img.jgi.doe.gov/m), [MG-RAST](https://metagenomics.anl.gov/) (also does processing), [NCBI](https://www.ncbi.nlm.nih.gov/) (databases you can search that feed into other pipelines)
+    - Biodiversity analysis: [EstimateS](http://viceroy.eeb.uconn.edu/estimates/)
+    - Microbial biodiversity analysis: [MOTHUR](https://www.mothur.org/), [QIIME2](https://qiime2.org/)
+    - Binning sequences: [MEGAN](http://www-ab.informatik.uni-tuebingen.de/software/megan ), CARMA  
         - use it to build a phylogenetic tree 
     
     Shotgun metagenomics
-    - Analysing sequence data: FASTQC    
+    - Analysing sequence data: [FASTQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)   
     - Assembly - EULER
     - Binning - GCOM
-    - Annotation - KEGG
-    - Analysis pipelines: MEGAN5
+    - Annotation - [KEGG](www.genome.jp/kegg/)
+    - Analysis pipelines: [MEGAN5](http://www-ab.informatik.uni-tuebingen.de/software/megan )
 
     Marker Gene Metagenomics
     - Standalone software: OTUbase
-    - Analysis pipelines: SILVA, GreenGenes
+    - Analysis pipelines: [SILVA](https://www.arb-silva.de/), [GreenGenes](greengenes.lbl.gov/)
     - Denoising: AmpliconNoise
     - Databases - Ribosomal Database Project (RDP)
 
@@ -358,8 +469,71 @@ Specific emphasis should be placed on the process used to find the answer. Be as
     - single cell sequencing 
     - FISH probe
 
+### Module_02 References
+
+Martinez A, Bradley AS, Waldbauer JR, Summons RE, DeLong EF. Proteorhodopsin photosystem gene expression enables photophosphorylation in a heterologous host. Proceedings of the National Academy of Sciences. 2007 Mar 27;104(13):5590–5. [PMC1838496](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1838496/)
+
 
 # Module 03
+
+### Evidence Worksheet_05 "Extensive Mosaic Structure"
+
+[Welch *et al* 2002](http://www.pnas.org/content/99/26/17020)
+
+#### Learning objectives:
+
+- Evaluate the concept of microbial species based on environmental surveys and cultivation studies.
+- Explain the relationship between microdiversity, genomic diversity and metabolic potential
+- Comment on the forces mediating divergence and cohesion in natural microbial communities
+
+What were the main questions being asked?
+
+- How different is the genotype between different strains of E. coli? 
+- What defines and marks a species within a genotype?
+
+What were the primary methodological approaches used?
+
+-	CFT073 strain was first isolated, cloned, and then whole genome sequenced using dye-terminator sequencing, primers and PCR-based techniques
+-	Alignment was done using BLAST 
+-	MAGPIE was used to annotate the ORFs for unique identifiers
+-	Orthology was inferred when a CFT073 gene exceeded 90% identity and alignments included at least 90% of the genes in the MG1655 and EDL933 genomes and lacked an equivalent match in other locations of the CFT073 genome
+
+
+Summarize the main results or findings. 
+
+-	CFT073 genome is 590bp, which is 209 bp longer than the MG1655 strain
+-	Backbone of all strains were conserved but there were certain sequences that would be inserted 
+-	EDL933 backbone and CFT073 backbone were indistinguishable
+    -	Genes that were shared were iron-uptake systems, potential fatty acid biosynthetic enzymes, adhesions, photophosferase system, ATP-binding cassette 
+    -	Island locations and size were the same although the contents were unrelated
+    -	Some islands were unique to a specific strain 
+-	The backbone helped to mark the evolutionary history for pathogenic and non-pathogenic strains 
+-	Common core chromosome has been preserved over time
+ 
+
+Do new questions arise from the results?
+
+-	How do we define a species?
+-	Is everything classified under a single species despite them having different functions?
+
+Were there any specific challenges or advantages in understanding the paper (e.g. did the authors provide sufficient background information to understand experimental logic, were methods explained adequately, were any specific assumptions made, were conclusions justified based on the evidence, were the figures or tables useful and easy to understand)? 
+
+-	The authors explained the method in a way that made sense
+-	The venn diagram was not only effective in showing how little overlap there is between the three strains of E. Coli but also showing the amount of similarity there is between each of them to each other  
+
+#### Part 2 Learning objectives:
+
+- Comment on the creative tension between gene loss, duplication and acquisition as it relates to microbial genome evolution
+- Identify common molecular signatures used to infer genomic identity and cohesion
+- Differentiate between mobile elements and different modes of gene transfer
+
+Based on your reading and discussion notes, explain the meaning and content of the following figure derived from the comparative genomic analysis of three *E. coli* genomes by Welch et al. Remember that CFT073 is a uropathogenic strain and that EDL933 is an enterohemorrhagic strain. Explain how this study relates to your understanding of ecotype diversity. Provide a definition of ecotype in the context of the human body. Explain why certain subsets of genes in CFT073 provide adaptive traits under your ecological model and speculate on their mode of vertical descent or gene transfer.
+
+- This figure shows the genomic backbone of the two strains of *E. Coli*. The vertical axis indicates the size of the island whereas the horizontal axis is the backbone. Ecotype diversity is when a specific strain in a species occupies a certain environment or niche and contains the genes for it to survive in said environment. Specific ecotypes will undergo selective pressure unique to the environment it is in and therefore, its genomic background may be different from a species that occupies a different environment. Also, if some genomic islands were acquired through horizontal gene transfer, it is possible that those genes are selected and kept, bringing about several ecotypes. 
+
+- An example of ecotype in relation to the human body are these two E. Coli strains. These strains operate in different environments and different niches and thus have different genes and different levels of expression of those genes. For example, if the CFT073 (enterohemorrhagic) strain was found in the urinary tract, it may no longer be pathogenic as that is not it’s normal niche and may not contain the genes necessary to be pathogenic. Certain subsets of genes get selected for depending on the environment an organism is in and is therefore known as an acquired adaptive trait. For example, the type II general secretory pathway secretion for chitinase is found in the backbone region between *rpsJ* and *tufA* of the CFT073 strain but not in the EDL933 strain. 
+
+
 ### Problem set_04 “Fine-scale phylogenetic architecture”
 #### Learning objectives: 
 
@@ -611,3 +785,48 @@ If you are stuck on some of these final questions, reading the [Kunin et al. 201
     - I could further bin my data by separating each of these species by colour so that there could be a greater number of species. 
 * How might different sequencing technologies influence observed diversity in a sample?
     - Some sequencing technologies may have higher error rates and may actually inflate the diversity estimate. However, this can be mediated by more stringent read quality filtering and lower clustering thresholds.
+    
+### Writing assessment_03: "The Microbial Species Definition"
+
+The question as to what defines a species is brought to the forefront of debate in our current genomic era in which technology has advanced enough to allow us to discover more information on the extremely diverse microbes. Due to the different approaches and methods proposed to define a microbial species, the current definition is unclear and a consensus cannot be reached amongst various professionals (1). However, the addition of horizontal gene transfer (HGT) acts to only complicate matters more in our struggle to define a microbial species. 
+
+The traditional use of taxonomy has allowed us to categorize an organism into a Phyla, Class, or other genera and as a result we could track the evolutionary changes the organism may have undergone. It was also possible to make inferences into its role in a larger biogeochemical cycle and its relationship with other organisms in a related environment. However, a pitfall is that when we try to compare the genomes of similar strains of an organism, such as E. Coli in which differentiation occurred millions of years ago, it becomes extremely difficult to pin point when specific genes were introduced, especially with HGT coming into play (1). 
+
+With any changing environment there is a drive for HGT evolutionarily as organisms need to gain fitness to ensure their survival (2). With a single HGT event or the exchange of a genomic island, an entire metabolic pathway could be transferred from one organism to another. A direct implication of this is that microbes can much more quickly adapt to an entirely new and different environment (1). As it adapts and gains more point mutations, it may accrue so many changes that it may be vastly different from what it was a long time ago, thereby creating a new species, or a new strain that occupies a completely new niche. In addition, there may be multiple HGT events across time, from multiple organisms, resulting in high levels of variation within an individual species (1). However, it is these horizontal gene transfer events that result in the categorization of taxonomy to be much more difficult (2).
+
+Currently, most of our classifications of microbes use next generation sequencing of the 16S rRNA conserved region. Because the 16S region has a hypervariable, conserved, and variable region, we are able to determine both its ancient lineage, the domain it belongs to, and its more modern lineage (3). This method has revealed a lot of information to us, including diversity for many microbes as we try to track the changes. However, 16S is still lacking in its resolution to differentiate between closely related species. In addition, if there are contributions to the genome from multiple related species, how does one define a single species?
+
+With 16S rRNA sequencing, OTU-based methods and ASV-based methods are used to analyze the high-throughput data generated. OTU binning methods involve the clustering of sequences into OTU clusters via a 3% dissimilarity threshold typically. However, the current binning methods with OTUs do not give a clear enough resolution to the large amount of diversity within microbes and neither can it differentiate between very closely related species. In addition, the success in identifying an OTU cluster is largely dependent on the quality of the chosen reference database, resulting in varying results (4). 
+
+The development of ASV derived methods in which there is a higher stringency produces a higher genetic resolution for 16S rRNA sequencing. Because ASVs can resolve sequences down to the nucleotide level, even single nucleotide differences can be detected. ASV methods also work independently of a reference database and thus, are not limited by it unlike OTU-derived methods (4). But overall, 16S identification still only takes into account a single region within the entire DNA and overlooks the changes that can occur through HGT outside of the 16S region. 
+An alternative to the 16S rRNA approach includes multilocus sequence analysis (MLSA) in which the reconstruction of the phylogenetic tree is based housekeeping genes, as these genes are rarely horizontally transferred between organisms. It is typically accessory genes that get exchanged between species (2,5). For MLSA, typically five genes are suggested to overcome any noise, but numbers can vary depending on the robustness of the groups as those that are distantly related may need as many as twelve genes in conjunction with the use of filters to remove any phylogenetic noise. As such, MLSA produces a greater resolution in comparison to the 16S rRNA-based approach although some pitfalls include the need to create custom primers for each group of interest and the selection of arbitrary genes (5). The current lack of a single method that is completely able to differentiate a species with high enough definition shows that HGT proves to introduce many challenges. Nonetheless, moving forward with other approaches may better consider HGT events in the attempt to define a microbial species. 
+
+Although HGT poses difficulty in creating a species definition that will completely define them, it also has positive consequences relating to the maintenance of our global biogeochemical cycles. The microbes’ ability to horizontally transfer genes to one another allows the Earth’s biogeochemical cycles to stay stable across time. For example, the important denitrification pathway contains various microbes of various populations working together to transform the initial substrate into the final product (6). Multiple species of in different populations can contain the same gene, but can also perform different tasks by controlling the level of expression of their genes. Even though microbes are dominant in different niches and perform different tasks typically, the overlap in genes means that if a certain species or population were to be wiped out, the denitrification cycle can still be carried on. This ensures that vital biogeochemical cycles, and in this case, denitrification, can still operate in the event of any natural disasters (6). 
+
+As we continue to try and define microbes, we will find that our lack of knowledge about microbes and the constant changes they undergo will act as an obstacle. As we are only able to sequence about 10% of all the microbes on our planet, the unknown 90% can possibly play a large factor (7). Because we have yet to sequence them all, even if we were to be able to come up with a possible definition, it may not stick for the long term. As such, we may be going through our current dilemma continuously as we are gain more information on the microbial world. Microbes are biological units that can be both simple and very complex while simultaneously and constantly changing. It is possible that there may be no real “definition” that can properly explain their existence. Microbes’ genetic makeup is constantly changing in response to the environment around it that is concurrently changing. As we gain more information about them, we try harder to determine what defines a microbial species. However, this also results in us getting pulled into the complexity of their world before we realize that there may not be a “one size fits all” solution. Difficulties will arise when different professionals, such as an ecologist and a microbiologist try to work together without out a clear and concrete definition, but the information gained from further studies of microbes is nonetheless important as the sequencing of microbes have allowed us to make useful connections phenotypically, ecologically, and evolutionarily. And it just maybe true that the complexity of the microbe world prevents us from generating a single definition that will fit them all and continuously trying may be futile. 
+
+Through the sequencing efforts of the 16S rRNA region, we have a constantly growing collection of data on microbes which has allowed us to peer a little more deeply not only into the interactions and relationships they have with other microbes but also the role they assume in the catalysis of our global biogeochemical cycles. However, the amount of information we have gained only scratches the surface of their world and HGT acts as a further obstacle in our attempts to define a microbial species due to the different origins of genetic data in organisms. However, microbes are biological units that are constantly changing with the environment and it may not be in our best interest to try and create a single definition as it may not be able to completely encapsulate their complexity. 
+
+**References**
+
+1. 	Achtman M, Wagner M. Microbial diversity and the genetic nature of microbial species. Nat Rev Microbiol. 2008 Jun;6(6):431–40. 
+2. 	Pál C, Papp B, Lercher MJ. Adaptive evolution of bacterial metabolic networks by horizontal gene transfer. Nat Genet. 2005 Dec;37(12):1372–5. 
+3. 	Yarza P, Yilmaz P, Pruesse E, Glöckner FO, Ludwig W, Schleifer K-H, et al. Uniting the classification of cultured and uncultured bacteria and archaea using 16S rRNA gene sequences. Nat Rev Microbiol. 2014 Sep;12(9):635–45. 
+4. 	Callahan BJ, McMurdie PJ, Holmes SP. Exact sequence variants should replace operational taxonomic units in marker-gene data analysis. ISME J. 2017 Dec;11(12):2639–43. 
+5. 	Rosselló-Móra R, Amann R. Past and future species definitions for Bacteria and Archaea. Syst Appl Microbiol. 2015 Jun 1;38(4):209–16. 
+6. 	Falkowski PG, Fenchel T, Delong EF. The Microbial Engines That Drive Earth’s Biogeochemical Cycles. Science. 2008 May 23;320(5879):1034–9. 
+7. 	Whitman WB, Coleman DC, Wiebe WJ. Prokaryotes: The unseen majority. Proc Natl Acad Sci. 1998 Jun 9;95(12):6578–83. 
+
+### Project 1
+
+See Project_1.pdf and Project_1_supplemental.rmd for the supplementary materials in the current directory. 
+    
+### Module_03 References
+
+Welch RA, Burland V, Plunkett G, Redford P, Roesch P, Rasko D, et al. Extensive mosaic structure revealed by the complete genome sequence of uropathogenic Escherichia coli. PNAS. 2002 Dec 24;99(26):17020–4. [Link](http://www.pnas.org/content/99/26/17020)
+
+# Module 04
+
+### Project 2
+
+See Project_1.pdf and Project_1_supplemental.rmd for the supplementary materials in the current directory. 

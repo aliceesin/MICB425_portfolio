@@ -1,0 +1,409 @@
+---
+title: "Project 1"
+author: "Group 3 (Victoria Panwala, Ian Lee, Nishi Parikh, Paaksum Wong, Anthony Yan, Alice Sin"
+date: "version `r format(Sys.time(), '%B %d, %Y')`"
+output: html_document
+---
+### Load packages and phyloseq object
+```{r, message=FALSE, warning=FALSE}
+library("tidyverse")
+library("phyloseq")
+library("cowplot")
+load("mothur_phyloseq.Rdata")
+load("qiime2_phyloseq.Rdata")
+```
+
+### Random selection OTU samples to make sure all sample sizes are the same
+```{r}
+set.seed(4832)
+m.norm = rarefy_even_depth(mothur, sample.size=100000)
+m.perc = transform_sample_counts(m.norm, function(x) 100 * x/sum(x))
+```
+
+### Random selection of ASV samples to make sure all sample sizes are the same
+```{r}
+set.seed(4832)
+q.norm = rarefy_even_depth(qiime2, sample.size=100000)
+q.perc = transform_sample_counts(q.norm, function(x) 100 * x/sum(x))
+```
+
+### Create table with geochemical data (OTU)
+```{r}
+# Calculate
+m.alpha = estimate_richness(m.norm, measures = c("Chao1", "Shannon"))
+
+# Combine these data with the rest of the geochemical data so that we have 1 data frame to work with in future plots.
+m.meta.alpha = full_join(rownames_to_column(m.alpha), rownames_to_column(data.frame(m.perc@sam_data)), by = "rowname")
+
+m.meta.alpha
+```
+
+### Make table with geochemical data (ASV)
+```{r}
+q.alpha = estimate_richness(q.norm, measures = c("Chao1", "Shannon"))
+q.meta.alpha = full_join(rownames_to_column(q.alpha), rownames_to_column(data.frame(q.perc@sam_data)), by = "rowname")
+q.meta.alpha
+```
+
+### Alpha-diversity by O2 concentration (OTU)
+```{r, warning=FALSE}
+plot1 = m.meta.alpha %>% 
+ggplot() +
+  geom_point(aes(x=Shannon, y= Depth_m, color=O2_uM, size = 4)) +
+  guides(size=FALSE) +
+  scale_color_gradient(low= "orange", high = "green") +
+  labs(y="Depth (m)", x="Shannon's Diversity Index")+
+  theme(legend.position="none")
+```
+
+### Alpha-diversity of oxygen (ASV)
+```{r, warning=FALSE}
+plot2=q.meta.alpha %>% 
+ggplot() +
+  geom_point(aes(x=Shannon, y= Depth_m, color=O2_uM, size = 4)) +
+  guides(size=FALSE) +
+  scale_color_gradient(low= "orange", high = "green") +
+  #geom_smooth(method='auto', aes(x=Shannon, y=Depth_m)) 
+  labs(y= "Depth (m)", x="Shannon's Diversity Index") 
+  
+```
+
+### combine plots for alpha-diversity vs. oxygen
+```{r}
+plot_grid(plot1, plot2, labels=c("a", "b"), rel_widths=c(2/5, 1/2))
+```
+
+### Taxa Abundance across depth faceted plot (OTU)
+```{r, fig.width=13}
+m.perc %>% 
+  
+plot_bar(fill="Phylum") + 
+  geom_bar(aes(fill=Phylum), stat="identity") +
+  facet_wrap(~Phylum, scales="free_y", ncol = 5) +
+  labs(title="a", x="Depth (m)") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(legend.position="none") 
+```
+
+### Taxa Abundance across depth faceted plot (ASV)
+```{r, fig.width=13}
+q.perc %>% 
+  
+plot_bar(fill="Phylum") + 
+  geom_bar(aes(fill=Phylum), stat="identity") +
+  facet_wrap(~Phylum, scales="free_y", ncol=5) +
+  labs(title="b", x="Depth (m)") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(legend.position="none")
+```
+
+### Abundance of Planctomycetes across depth (OTU)
+```{r}
+plot5=m.perc %>% 
+  subset_taxa(Phylum=="Planctomycetes") %>% 
+  psmelt() %>% 
+  group_by(Sample) %>% 
+  summarize(Abundance_sum=sum(Abundance), Depth_m=mean(Depth_m)) %>% 
+
+
+ggplot() +
+  geom_point(aes(x=Depth_m, y=Abundance_sum)) +
+  geom_smooth(method='lm', aes(x=as.numeric(Depth_m), y=Abundance_sum)) 
+  
+```
+
+### Abundance of Planctomycetes across depth (ASV)
+```{r}
+plot6=q.perc %>% 
+  subset_taxa(Phylum=="D_1__Planctomycetes") %>% 
+  psmelt() %>% 
+  group_by(Sample) %>% 
+  summarize(Abundance_sum=sum(Abundance), Depth_m=mean(Depth_m)) %>% 
+
+
+ggplot() +
+  geom_point(aes(x=Depth_m, y=Abundance_sum)) +
+  geom_smooth(method='lm', aes(x=as.numeric(Depth_m), y=Abundance_sum)) 
+  
+```
+
+### Combine abundance vs depth plots 
+```{r}
+plot_grid(plot5, plot6, labels=c("c","d"), rel_widths=c(1/2,1/2))
+```
+
+### Abundance of Planctomycetes by O2 concentration (OTU)
+```{r}
+plot3=m.perc %>% 
+  subset_taxa(Phylum=="Planctomycetes") %>% 
+  psmelt() %>% 
+  group_by(Sample) %>% 
+  summarize(Abundance_sum=sum(Abundance), O2_uM=mean(O2_uM)) %>% 
+  
+ggplot() +
+  geom_point(aes(x=O2_uM, y=Abundance_sum)) +
+  geom_smooth(method='lm', aes(x=O2_uM, y=Abundance_sum)) 
+```
+
+### Abundance of Planctomycetes by O2 concentration (ASV)
+```{r}
+plot4=q.perc %>% 
+  subset_taxa(Phylum=="D_1__Planctomycetes") %>% 
+  psmelt() %>% 
+  group_by(Sample) %>% 
+  summarize(Abundance_sum=sum(Abundance), O2_uM=mean(O2_uM)) %>% 
+  
+ggplot() +
+  geom_point(aes(x=O2_uM, y=Abundance_sum)) +
+  geom_smooth(method='lm', aes(x=as.numeric(O2_uM), y=Abundance_sum)) 
+```
+
+### Abundance and oxygen plots combined
+```{r}
+plot_grid(plot3, plot4, labels=c("e","f"), rel_widths=c(1/2,1/2))
+```
+
+### Abundance of Planctomycetes by NH4 concentration (OTU)
+```{r}
+plot7=m.perc %>% 
+  subset_taxa(Phylum=="Planctomycetes") %>% 
+  psmelt() %>% 
+  group_by(Sample) %>% 
+  summarize(Abundance_sum=sum(Abundance), NH4_uM=mean(NH4_uM)) %>% 
+  
+ggplot() +
+  geom_point(aes(x=NH4_uM, y=Abundance_sum)) +
+  geom_smooth(method='lm', aes(x=NH4_uM, y=Abundance_sum)) 
+```
+
+### Abundance of Planctomycetes by NH4 concentration (ASV)
+```{r}
+plot8=q.perc %>% 
+  subset_taxa(Phylum=="D_1__Planctomycetes") %>% 
+  psmelt() %>% 
+  group_by(Sample) %>% 
+  summarize(Abundance_sum=sum(Abundance), NH4_uM=mean(NH4_uM)) %>% 
+  
+ggplot() +
+  geom_point(aes(x=NH4_uM, y=Abundance_sum)) +
+  geom_smooth(method='lm', aes(x=as.numeric(NH4_uM), y=Abundance_sum)) 
+```
+
+### Combine abundance vs. NH4 plots 
+```{r}
+plot_grid(plot7, plot8, labels=c("g", "h"), rel_widths=c(1/2, 1/2))
+```
+
+### p-value of taxa across depth (OTU)
+```{r}
+m.norm %>% 
+  subset_taxa(Phylum=="Planctomycetes") %>% 
+  tax_glom(taxrank = 'Phylum') %>%
+  psmelt() %>% 
+
+  lm(Abundance ~ Depth_m, .) %>% 
+  summary()
+```
+
+### p-value of taxa across O2 concentrations (OTU)
+```{r}
+m.norm %>% 
+  subset_taxa(Phylum=="Planctomycetes") %>% 
+  tax_glom(taxrank = 'Phylum') %>%
+  psmelt() %>%
+
+  lm(Abundance ~ O2_uM, .) %>% 
+  summary()
+```
+
+### p-value for abundance across NH4 concentrations (OTU)
+```{r}
+m.norm %>% 
+  subset_taxa(Phylum== 'Planctomycetes') %>% 
+  tax_glom(taxrank = 'Phylum') %>%
+  psmelt() %>%
+
+  lm(Abundance ~ NH4_uM, .) %>% 
+  summary()
+```
+
+### p-value of taxa across depth (ASV)
+```{r}
+q.norm %>% 
+  subset_taxa(Phylum=="D_1__Planctomycetes") %>% 
+  tax_glom(taxrank = 'Phylum') %>%
+  psmelt() %>% 
+
+  lm(Abundance ~ Depth_m, .) %>% 
+  summary()
+```
+
+### p-value of our taxa across O2 concentration (ASV)
+```{r}
+q.norm %>% 
+  subset_taxa(Phylum=="D_1__Planctomycetes") %>% 
+  tax_glom(taxrank = 'Phylum') %>%
+  psmelt() %>%
+
+  lm(Abundance ~ O2_uM, .) %>% 
+  summary()
+```
+
+### p-value for abundance across NH4 concentrations (ASV)
+```{r}
+q.norm %>% 
+  subset_taxa(Phylum== 'D_1__Planctomycetes') %>% 
+  tax_glom(taxrank = 'Phylum') %>%
+  psmelt() %>%
+
+  lm(Abundance ~ NH4_uM, .) %>% 
+  summary()
+```
+
+### Number of OTUs across Depth
+```{r}
+plot9=m.norm %>% 
+  subset_taxa(Phylum=="Planctomycetes") %>% 
+  plot_richness(measures=c("Observed")) +
+  labs(x="Depth (m)", y="Number")
+```
+
+### Number of ASVs across Depth
+```{r}
+plot10=q.norm %>% 
+  subset_taxa(Phylum=="D_1__Planctomycetes") %>% 
+  plot_richness(measures=c("Observed")) +
+  labs(x="Depth (m)", y= "Number")
+```
+
+### Combine number of ASV/OTU plots
+```{r}
+plot_grid(plot9, plot10, labels=c("a", "b"), rel_widths=c(1/2, 1/2))
+```
+
+### Abundance of OTUs across depth and O2 concentrations
+```{r, fig.height=4, fig.width=5}
+plot11=m.perc %>% 
+  subset_taxa(Phylum=="Planctomycetes") %>%
+  filter_taxa(function(x) max(x) > 0.1, TRUE) %>% 
+  psmelt() %>% 
+
+ggplot() +
+  geom_point(aes(x=Depth_m, y=OTU, size=Abundance, colour=O2_uM)) + 
+  guides(colour=FALSE) +
+  scale_color_gradient(low="blue", high="red") +
+  scale_size_continuous(range = c(0,5)) +
+  labs(y="OTU", x="Depth_m") 
+  #theme(axis.text.x = element_text(angle=60, hjust=1))
+```
+
+### Abundance of ASVs across depth and O2 concentrations
+```{r, fig.width = 5, fig.height=4}
+plot12=q.perc %>% 
+  subset_taxa(Phylum=="D_1__Planctomycetes") %>%
+  filter_taxa(function(x) max(x)>0.1, TRUE) %>%
+  psmelt() %>% 
+  
+ggplot() +
+  geom_point(aes(x=Depth_m, y=OTU, colour=O2_uM, size=Abundance)) + 
+  scale_color_gradient(low="blue", high="red") +
+  scale_size_continuous(range = c(0,4)) +
+  labs(y="ASV", x="Depth (m)") 
+  #theme(axis.text.x = element_text(angle=60, hjust=1))
+  
+```
+
+### Combine OTU and ASV abundance plots
+```{r, fig.width=10, fig.height=4}
+plot_grid(plot11, plot12, labels=c("a", "b"), rel_widths=c(1/2, 1/2))
+```
+
+### Making an OTU table for Planctomycetes to find p-values 
+```{r}
+m.filter <-
+  subset_taxa(m.norm,Phylum=="Planctomycetes")
+
+m.filtered <- as.data.frame(m.filter@otu_table) 
+
+df_transpose = t(m.filtered)
+
+
+# Remove the otu_stats object so upon rerunning doesn’t add to existing object
+rm(otu_stats)
+# Create new data frame to hold linear model outputs
+otu_stats = data.frame("Estimate" = numeric(0), "Std. Error"= numeric(0),"t value"= numeric(0),"Pr(>|t|)"= numeric(0))
+
+#Run a loop across your row names from a table of your otu/asv table filtered to just those within your taxon of interest. In this script, this table is named "m.filtered".
+for (otu in row.names(df_transpose)){
+#Make sure necessary packages are loaded
+  require(tidyverse)
+  require(knitr)
+#Run a linear model of 1 OTU against depth
+    linear_fit = m.norm %>% 
+    psmelt() %>% 
+    filter(OTU==otu) %>% 
+    
+    lm(Abundance ~ Depth_m, .) %>% 
+    summary()
+#Pull out the coefficients and p-values for depth
+  otu_data = linear_fit$coefficients["Depth_m",]
+#Add these values to a growing table of OTUs
+  otu_stats <- rbind(otu_stats, otu_data)
+}
+#Rename columns of output table
+colnames(otu_stats)<- (c("Estimate", "Std. Error","t value","Pr(>|t|)"))
+
+#Apply row names from the m.filtered data to the lm output table
+row.names(otu_stats) <- row.names(df_transpose)
+
+#Print table
+kable(otu_stats,caption="Correlation data of OTUs within Planctomycetes phylum across depth")
+
+```
+
+### p-values of individual ASVs in a table
+```{r}
+q.filter <-
+  subset_taxa(q.norm,Phylum=="D_1__Planctomycetes") 
+ q.filtered <- as.data.frame(q.filter@otu_table) 
+
+# Remove the otu_stats object so upon rerunning doesn’t add to existing object
+rm(asv_stats)
+# Create new data frame to hold linear model outputs
+asv_stats = data.frame("Estimate" = numeric(0), "Std. Error"= numeric(0),"t value"= numeric(0),"Pr(>|t|)"= numeric(0))
+
+
+#Run a loop across your row names from a table of your otu/asv table filtered to 
+#just those within your taxon of interest. In this script, this table is named "m.filtered".
+for (asv in row.names(q.filtered)){
+#Make sure necessary packages are loaded
+  require(tidyverse)
+  require(knitr)
+
+#Run a linear model of 1 OTU against depth
+    linear_fit = q.norm %>% 
+    psmelt() %>% 
+    filter(OTU==asv) %>% 
+    
+    lm(Abundance ~ Depth_m, .) %>% 
+    summary()
+    
+#Pull out the coefficients and p-values for depth
+  asv_data = linear_fit$coefficients["Depth_m",]
+#Add these values to a growing table of OTUs
+  asv_stats <- rbind(asv_stats, asv_data)
+}
+
+#Rename columns of output table
+colnames(asv_stats)<- (c("Estimate", "Std. Error","t value","Pr(>|t|)"))
+
+#Apply row names from the m.filtered data to the lm output table
+row.names(asv_stats) <- row.names(q.filtered)
+
+#Print table
+kable(asv_stats,caption="Correlation data of OTUs within Planctomycetes phylum across depth")
+```
+
+

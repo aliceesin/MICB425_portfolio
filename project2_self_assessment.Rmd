@@ -1,5 +1,5 @@
 ---
-title: "Project 1 self-assessment of contributions"
+title: "Project 2 self-assessment of contributions"
 subtitle: "2018 Term 2 - MICB425"
 output: html_document
 ---
@@ -11,7 +11,7 @@ Include **separate** completed versions of this document for Project 1 **and** P
 ### Writing
 
 ### Editing
-- helped edit 
+
 
 ## Introduction
 ### Literature research
@@ -24,33 +24,34 @@ Include **separate** completed versions of this document for Project 1 **and** P
 ## Methods
 ### Writing
 
+- wrote the first half of the methods portion explaining data collection, TreeSAPP, and iTOL
+
 ### Editing
-- edited/cut out extraneous information
+
+- edited in general
+- edited the codes portion of the methods 
 
 ## Results
 ### Analysis 
 
 ### Figures
-- made almost all of the figures for OTU 
-- worked together with another member on ASV figures
-- troubleshot the looping code for p-values because it didn't work for OTUs for some reason
-- formatted figures in the document
-- make a Rmd with all the code for submission
 
-- after getting feedback, fixed all the figures and combined them using cowplot 
-- made the table for ASV/OTUs with p-values
+- made multiple figures but many were scrapped as I worked together with another member to improve on each others codes
+- combined the figures together at the very end
+- formated the document and created the final supplementary.rmd file for submission
 
 ### Writing
-- helped write  
+
+- wrote figure captions and also small portion on the phylogenetic trees
 
 ### Editing
-- helped edit  
+
+- helped edit 
 
 ## Discussion
 ### Literature research
 
 ### Writing
-- helped write section on OTU/ASVs 
 
 ### Editing
 

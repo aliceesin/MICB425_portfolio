@@ -1,0 +1,225 @@
+---
+title: "Project 2"
+author: "Group 3 (Victoria Panwala, Ian Lee, Nishi Parikh, Paaksum Wong, Anthony Yan, Alice Sin)"
+date: "version `r format(Sys.time(), '%B %d, %Y')`"
+output: html_document
+---
+### load necessary packages
+```{r, message=FALSE, warning=FALSE}
+library("tidyverse")
+library("cowplot")
+```
+
+### Loading in .tsv data for different depths
+```{r, message=FALSE, warning= FALSE}
+nirK.DNA.10m = read_tsv("nirk_DNA_10m_contig_map.tsv") %>% 
+  select(Tax.DNA.10 = Confident_Taxonomy, Abund.DNA.10 = Abundance, Query)
+
+nirK.DNA.100m = read_tsv("nirk_DNA_100m_contig_map.tsv") %>% 
+  select(Tax.DNA.100 = Confident_Taxonomy, Abund.DNA.100 = Abundance, Query)
+
+nirK.DNA.120m = read_tsv("nirk_DNA_120m_contig_map.tsv") %>% 
+    select(Tax.DNA.120 = Confident_Taxonomy, Abund.DNA.120 = Abundance, Query)
+
+nirK.DNA.135m = read_tsv("nirk_DNA_135m_contig_map.tsv") %>% 
+    select(Tax.DNA.135 = Confident_Taxonomy, Abund.DNA.135 = Abundance, Query)
+
+nirK.DNA.150m = read_tsv("nirk_DNA_150m_contig_map.tsv") %>% 
+    select(Tax.DNA.150 = Confident_Taxonomy, Abund.DNA.150 = Abundance, Query)
+
+nirK.DNA.165m = read_tsv("nirk_DNA_165m_contig_map.tsv") %>% 
+    select(Tax.DNA.165 = Confident_Taxonomy, Abund.DNA.165 = Abundance, Query)
+
+nirK.DNA.200m = read_tsv("nirk_DNA_200m_contig_map.tsv") %>% 
+    select(Tax.DNA.200 = Confident_Taxonomy, Abund.DNA.200 = Abundance, Query)
+
+nirK.RNA.10m = read_tsv("nirk_RNA_10m_contig_map.tsv") %>% 
+  select(Tax.RNA.10 = Confident_Taxonomy, Abund.RNA.10 = Abundance, Query)
+
+nirK.RNA.100m = read_tsv("nirk_RNA_100m_contig_map.tsv") %>% 
+  select(Tax.RNA.100 = Confident_Taxonomy, Abund.RNA.100 = Abundance, Query)
+
+nirK.RNA.120m = read_tsv("nirk_RNA_120m_contig_map.tsv") %>% 
+    select(Tax.RNA.120 = Confident_Taxonomy, Abund.RNA.120 = Abundance, Query)
+
+nirK.RNA.135m = read_tsv("nirk_RNA_135m_contig_map.tsv") %>% 
+    select(Tax.RNA.135 = Confident_Taxonomy, Abund.RNA.135 = Abundance, Query)
+
+nirK.RNA.150m = read_tsv("nirk_RNA_150m_contig_map.tsv") %>% 
+    select(Tax.RNA.150 = Confident_Taxonomy, Abund.RNA.150 = Abundance, Query)
+
+nirK.RNA.165m = read_tsv("nirk_RNA_165m_contig_map.tsv") %>% 
+    select(Tax.RNA.165 = Confident_Taxonomy, Abund.RNA.165 = Abundance, Query)
+
+nirK.RNA.200m = read_tsv("nirk_RNA_200m_contig_map.tsv") %>% 
+    select(Tax.RNA.200 = Confident_Taxonomy, Abund.RNA.200 = Abundance, Query)
+```
+
+### Combining DNA and RNA data into a single table
+```{r}
+nirK.all = nirK.DNA.10m %>% 
+# Combine the data frames will full_join to keep all the data
+  full_join(nirK.RNA.10m, by = "Query") %>% 
+  full_join(nirK.DNA.100m, by = "Query") %>% 
+  full_join(nirK.RNA.100m, by = "Query") %>% 
+  full_join(nirK.DNA.120m, by = "Query") %>%
+  full_join(nirK.RNA.120m, by = "Query") %>%
+  full_join(nirK.DNA.135m, by = "Query") %>%
+  full_join(nirK.RNA.135m, by = "Query") %>%
+  full_join(nirK.DNA.150m, by = "Query") %>%
+  full_join(nirK.RNA.150m, by = "Query") %>%
+  full_join(nirK.DNA.165m, by = "Query") %>%
+  full_join(nirK.RNA.165m, by = "Query") %>%
+  full_join(nirK.DNA.200m, by = "Query") %>%
+  full_join(nirK.RNA.200m, by = "Query") %>%
+
+# Create a taxonomy variable aggregating all taxonomy columns so as to fill in any NAs that might occur. !is.na means "is not NA", so the following says that the Taxonomy data should be taken from Tax.RNA.10 if that is not NA, or else take it from Tax.DNA.10 if that is not NA, or else Tax.RNA.200, etc. until if all are NA, give Taxonomy of "unclassified"
+  mutate(Taxonomy = ifelse(!is.na(Tax.RNA.10), Tax.RNA.10,
+                    ifelse(!is.na(Tax.DNA.10), Tax.DNA.10,
+                    ifelse(!is.na(Tax.RNA.100), Tax.RNA.100,
+                    ifelse(!is.na(Tax.DNA.100), Tax.DNA.100,
+                    ifelse(!is.na(Tax.RNA.120), Tax.RNA.120,
+                    ifelse(!is.na(Tax.DNA.120), Tax.DNA.120,
+                    ifelse(!is.na(Tax.RNA.135), Tax.RNA.135,
+                    ifelse(!is.na(Tax.DNA.135), Tax.DNA.135,
+                    ifelse(!is.na(Tax.RNA.150), Tax.RNA.150,
+                    ifelse(!is.na(Tax.DNA.150), Tax.DNA.150,
+                    ifelse(!is.na(Tax.RNA.165), Tax.RNA.165,
+                    ifelse(!is.na(Tax.DNA.165), Tax.DNA.165,
+                    ifelse(!is.na(Tax.RNA.200), Tax.RNA.200,
+                    ifelse(!is.na(Tax.DNA.200), Tax.DNA.200,
+                           "unclassified"))))))))))))))) %>%    
+  
+# Get rid of the old Tax variables
+  select(-starts_with("Tax.")) %>% 
+# Gather all the abundance data into 1 column 
+  gather("Key", "Abundance", starts_with("Abund")) %>% 
+# Turn the Key into Depth and RNA/DNA variables. We can easily do this because we specifically named these variables with period separation when we loaded in the original data
+  separate(Key, c("Key","Type","Depth_m"), by = ".") %>% 
+# Remove Key variable now that it only contains "Abund". This also serves to reorder the columns so that the very long Query is at the end.
+  select(Depth_m, Type, Abundance, Taxonomy, Query) %>% 
+# Make sure R knows depth is numerical since it came from a character variable
+  mutate(Depth_m = as.numeric(Depth_m)) %>% 
+# Separate Taxonomy into columns so we can plot at different levels
+  separate(Taxonomy, into = c("Domain", "Phylum", "Class", "Order", "Family", "Genus", "Species"), sep="; ")
+```
+
+
+### Plot DNA vs. RNA abundance across depth
+```{r}
+nirK.all %>% 
+# Change NAs to "unclassified" at the level you want to plot
+  mutate(Phylum = ifelse(is.na(Phylum), "unclassified", Phylum)) %>% 
+
+# Show both RNA and DNA using an x variable  
+ggplot(aes(x = Type, y = Depth_m)) +
+  geom_point(aes(size = Abundance)) +
+  scale_y_reverse(lim=c(200,10)) +
+  labs(x = "") +
+  theme_classic()
+```
+
+
+### Load mothur data from project 1
+```{r}
+load("mothur_phyloseq.RData")
+
+metadata = data.frame(mothur@sam_data)
+```
+
+### Make abundance plot
+```{r}
+plot1 = nirK.all %>% 
+# Change NAs to "unclassified" at the level you want to plot
+  mutate(Phylum = ifelse(is.na(Phylum), "unclassified", Phylum)) %>% 
+  
+ggplot(aes(x = Phylum, y = Depth_m)) +
+  geom_point(aes(size = ifelse(Abundance == 0, NA, Abundance), color = Type), position = position_dodge(0.5)) +
+  scale_y_reverse(lim=c(200,10)) +
+  labs(y = "") +
+  theme_classic() +
+  scale_size_continuous(name = "Abundance")
+```
+
+### Make nitrite plot 
+```{r}
+plot2 = metadata %>% 
+# Order the data by depth  
+  arrange(Depth_m) %>% 
+  
+ggplot(aes(x = NO2_uM, y = Depth_m)) +
+    geom_point() +
+    geom_path(aes(group = 1)) +
+    scale_y_reverse(lim=c(200,10)) +
+  theme_classic() +
+  labs(y = "Depth (m)",
+       x = "Nitrite NO2- (uM)")
+```
+
+### Combine abundance with nitrite plot
+```{r, fig.width=9}
+plot_grid(plot2, plot1, labels=c("A", "B"), rel_widths=c(1/4, 3/4))
+```
+
+### Abundance of nirK DNA and RNA in Phyla
+```{r}
+plot1 = nirK.all %>% 
+# Filter the DNA data
+  filter(Type == "DNA") %>% 
+  mutate(Phylum = ifelse(is.na(Phylum), "unclassified", Phylum)) %>% 
+  
+ggplot(aes(x = Depth_m,  y = Abundance)) +
+# Use the size aesthetic to show abundance
+  geom_point(aes(colour = Phylum, size = Abundance)) +
+  theme(legend.position="none") 
+```
+
+```{r}
+plot2 = nirK.all %>% 
+# Filter the RNA data
+  filter(Type == "RNA") %>% 
+  mutate(Phylum = ifelse(is.na(Phylum), "unclassified", Phylum)) %>% 
+  
+ggplot(aes(x = Depth_m,  y = Abundance)) +
+  # Use the size aesthetic to show abundance
+  geom_point(aes(colour = Phylum, size = Abundance)) +
+  guides(size=FALSE) +
+  theme_classic()
+```
+
+```{r}
+plot_grid(plot1, plot2, labels=c("A", "B"), rel_widths = c(2/5, 3/5))
+```
+
+### Abundance of nirK DNA and RNA in Classes 
+```{r}
+plot1 = nirK.all %>% 
+# Filter the DNA data
+  filter(Type == "DNA") %>% 
+  mutate(Class = ifelse(is.na(Class), "unclassified", Class)) %>% 
+  
+ggplot(aes(x = Depth_m,  y = Abundance)) +
+# Use the size aesthetic to show abundance
+  geom_point(aes(colour = Class, size = Abundance)) +
+  theme(legend.position="none") 
+  
+
+```
+
+```{r}
+plot2 = nirK.all %>% 
+# Filter the RNA data
+  filter(Type == "RNA") %>% 
+  mutate(Class = ifelse(is.na(Class), "unclassified", Class)) %>% 
+  
+ggplot(aes(x = Depth_m,  y = Abundance)) +
+  # Use the size aesthetic to show abundance
+  geom_point(aes(colour = Class, size = Abundance)) +
+  guides(size=FALSE)+
+  theme_classic()
+  
+```
+
+```{r, fig.width = 9}
+plot_grid(plot1, plot2, labels=c("C", "D"), rel_widths = c(1/2, 3/4))
+```
