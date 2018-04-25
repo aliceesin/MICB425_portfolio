@@ -1,0 +1,29 @@
+Query	Marker	Taxonomy	Confident_Taxonomy	Abundance	Likelihood	WTD
+scaffold21775	nirK	Archaea; Euryarchaeota; Halobacteria; Halobacteriales; Haloarculaceae	Archaea; Euryarchaeota; Halobacteria; Halobacteriales; Haloarculaceae	0.173921	0.226798	0.08073
+scaffold158198	nirK	Bacteria; Proteobacteria	Bacteria; Proteobacteria	348.557	0.983227	0.3365
+scaffold137485	nirK	Bacteria; Proteobacteria	Bacteria; Proteobacteria	271.479	0.971035	0.3365
+scaffold19910	nirK	Bacteria; Proteobacteria; Betaproteobacteria	Bacteria; Proteobacteria; Betaproteobacteria	8.35896	0.883496	0.225
+scaffold56797	nirK	Bacteria; Bacteroidetes; Flavobacteriia; Flavobacteriales; Flavobacteriaceae; unclassified Flavobacteriaceae	Bacteria; Bacteroidetes; Flavobacteriia; Flavobacteriales; Flavobacteriaceae; unclassified Flavobacteriaceae	0.948937	0.902052	0.0
+scaffold128980	nirK	Bacteria; Verrucomicrobia; Spartobacteria; Chthoniobacterales; Chthoniobacteraceae; Chthoniobacter; Chthoniobacter flavus	Bacteria; Verrucomicrobia; Spartobacteria; Chthoniobacterales; Chthoniobacteraceae; Chthoniobacter	0.347967	0.493372	0.0
+scaffold01530	nirK	Bacteria; Proteobacteria	Bacteria; Proteobacteria	1300.02	0.956081	0.3365
+scaffold01724	nirK	Bacteria; Proteobacteria; Betaproteobacteria	Bacteria; Proteobacteria; Betaproteobacteria	7.45792	0.63942	0.26359
+scaffold178086	nirK	Bacteria; Proteobacteria; Betaproteobacteria	Bacteria; Proteobacteria; Betaproteobacteria	1.02693	0.733416	0.225
+scaffold19373	nirK	Bacteria; Proteobacteria; Alphaproteobacteria; Rhodobacterales; Rhodobacteraceae	Bacteria; Proteobacteria; Alphaproteobacteria; Rhodobacterales; Rhodobacteraceae	1.70553	0.961471	0.0625
+scaffold40087	nirK	Bacteria; Proteobacteria; Gammaproteobacteria; Chromatiales; Chromatiaceae; Nitrosococcus	Bacteria; Proteobacteria; Gammaproteobacteria; Chromatiales; Chromatiaceae; Nitrosococcus	0.393797	1.0	0.0
+scaffold118576	nirK	Bacteria; Proteobacteria; Alphaproteobacteria; Rhodobacterales; Rhodobacteraceae	Bacteria; Proteobacteria; Alphaproteobacteria; Rhodobacterales; Rhodobacteraceae	12.7362	0.740769	0.0625
+scaffold22630	nirK	Bacteria; Proteobacteria; Alphaproteobacteria; Rhodobacterales; Rhodobacteraceae	Bacteria; Proteobacteria; Alphaproteobacteria; Rhodobacterales; Rhodobacteraceae	5.08455	0.471738	0.0625
+scaffold01248	nirK	Bacteria; Proteobacteria; Gammaproteobacteria; Chromatiales; Chromatiaceae; Nitrosococcus	Bacteria; Proteobacteria; Gammaproteobacteria; Chromatiales; Chromatiaceae; Nitrosococcus	1.77152	1.0	0.0
+scaffold147432	nirK	Bacteria; Proteobacteria; Betaproteobacteria	Bacteria; Proteobacteria; Betaproteobacteria	0.454097	0.830762	0.225
+scaffold46732	nirK	Bacteria; Proteobacteria; Alphaproteobacteria; Rhizobiales	Bacteria; Proteobacteria; Alphaproteobacteria; Rhizobiales	262.882	0.921685	0.1101
+scaffold00808	nirK	Bacteria; Proteobacteria	Bacteria; Proteobacteria	344.416	0.404052	0.3365
+scaffold33430	nirK	Bacteria; Proteobacteria; Betaproteobacteria	Bacteria; Proteobacteria; Betaproteobacteria	0.58078	0.899387	0.225
+scaffold184910	nirK	Bacteria; Proteobacteria; Alphaproteobacteria; Rhodobacterales; Rhodobacteraceae	Bacteria; Proteobacteria; Alphaproteobacteria; Rhodobacterales; Rhodobacteraceae	0.0874315	0.580833	0.0625
+scaffold72601	nirK	Bacteria; Proteobacteria; Betaproteobacteria; Neisseriales; Neisseriaceae; Neisseria	Bacteria; Proteobacteria; Betaproteobacteria; Neisseriales; Neisseriaceae; Neisseria	0.821786	0.302828	0.01432
+scaffold65637	nirK	Bacteria; Firmicutes; Clostridia; Clostridiales; Clostridiales incertae sedis; Clostridiales Family XVII. Incertae Sedis; Thermaerobacter	Bacteria; Firmicutes; Clostridia; Clostridiales; Clostridiales incertae sedis; Clostridiales Family XVII. Incertae Sedis	0.633756	0.79948	0.01562
+scaffold34344	nirK	Bacteria; Proteobacteria; Betaproteobacteria	Bacteria; Proteobacteria; Betaproteobacteria	0.295708	0.436947	0.225
+scaffold02781	nirK	Bacteria; Proteobacteria	Bacteria; Proteobacteria	0.556215	0.928731	0.36875
+scaffold45457	nirK	Bacteria; Proteobacteria; Gammaproteobacteria; Chromatiales; Chromatiaceae; Nitrosococcus	Bacteria; Proteobacteria; Gammaproteobacteria; Chromatiales; Chromatiaceae; Nitrosococcus	0.320539	0.506253	0.0
+scaffold101583	nirK	Bacteria; Bacteroidetes; Flavobacteriia; Flavobacteriales; Flavobacteriaceae; Maribacter	Bacteria; Bacteroidetes; Flavobacteriia; Flavobacteriales; Flavobacteriaceae; Maribacter	1.25577	0.999986	0.0
+scaffold221327	nirK	Bacteria; Proteobacteria; Gammaproteobacteria; Pseudomonadales; Pseudomonadaceae; Pseudomonas; Pseudomonas entomophila	Bacteria; Proteobacteria; Gammaproteobacteria; Pseudomonadales; Pseudomonadaceae; Pseudomonas	0.976553	0.310883	0.0
+scaffold05605	nirK	Bacteria; Proteobacteria; Alphaproteobacteria; Rhodobacterales; Rhodobacteraceae	Bacteria; Proteobacteria; Alphaproteobacteria; Rhodobacterales; Rhodobacteraceae	3.7147	0.581738	0.0625
+scaffold03636	nirK	Bacteria; Proteobacteria; Gammaproteobacteria; Chromatiales; Chromatiaceae; Nitrosococcus	Bacteria; Proteobacteria; Gammaproteobacteria; Chromatiales; Chromatiaceae; Nitrosococcus	5.38299	1.0	0.0

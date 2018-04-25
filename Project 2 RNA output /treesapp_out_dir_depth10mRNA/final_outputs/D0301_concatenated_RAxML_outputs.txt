@@ -1,0 +1,5 @@
+# Functional analysis, nitrite reductase (NO-forming):
+
+Placement weight 99.58%: Assignment of query to the lowest common ancestor of Haloarcula marismortui | CAB93142 (1), Halomicrobium mukohataei DSM 12286 | ACV47144 (2), Halorhabdus utahensis DSM 12940 | ACV10224 (3), Natronomonas pharaonis DSM 2160 | CAI48890 (4), Halogeometricum borinquense DSM 11551 | ADQ68950 (5) and Rhodothermus marinus DSM 4252 | ACY48098 (6).
+Placement weight 0.23%: Assignment of query to Flavobacteriaceae bacterium 3519-10 | ACU06855 (17).
+Placement weight 0.20%: Assignment of query to Chthoniobacter flavus Ellin428 | EDY19063 (19).
