@@ -473,6 +473,7 @@ Specific emphasis should be placed on the process used to find the answer. Be as
 
 Martinez A, Bradley AS, Waldbauer JR, Summons RE, DeLong EF. Proteorhodopsin photosystem gene expression enables photophosphorylation in a heterologous host. Proceedings of the National Academy of Sciences. 2007 Mar 27;104(13):5590–5. [PMC1838496](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1838496/)
 
+Wooley JC, Godzik A, Friedberg I. A Primer on Metagenomics. Bourne PE, editor. PLoS Computational Biology. 2010 Feb 26;6(2):e1000667. [Link](http://dx.plos.org/10.1371/journal.pcbi.1000667)
 
 # Module 03
 
@@ -822,6 +823,12 @@ Through the sequencing efforts of the 16S rRNA region, we have a constantly grow
 See Project_1.pdf and Project_1_supplemental.rmd for the supplementary materials in the current directory. 
     
 ### Module_03 References
+
+Callahan BJ. Exact sequence variants should replace operational taxonomic units in marker-gene data analysis. The ISME Journal. :5. [Link](https://www.ncbi.nlm.nih.gov/pubmed/28731476)
+
+Hallam SJ, Torres-Beltrán M, Hawley AK. Monitoring microbial responses to ocean deoxygenation in a model oxygen minimum zone. Scientific Data. 2017 Oct 31;4:170158. [Link](http://www.nature.com/articles/sdata2017158)
+
+Torres-Beltrán M, Hawley AK, Capelle D, Zaikova E, Walsh DA, Mueller A, et al. A compendium of geochemical information from the Saanich Inlet water column. Scientific Data. 2017 Oct 31;4:170159. [Link](http://www.nature.com/articles/sdata2017159)
 
 Welch RA, Burland V, Plunkett G, Redford P, Roesch P, Rasko D, et al. Extensive mosaic structure revealed by the complete genome sequence of uropathogenic Escherichia coli. PNAS. 2002 Dec 24;99(26):17020–4. [Link](http://www.pnas.org/content/99/26/17020)
 
